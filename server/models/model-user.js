@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema
-// const Helper = require('../helper/helper')
-// console.log(Helper);
+const bcrypt = require('../helpers/bcrypt')
+
 
 const userSchema = new Schema({
     name: {
@@ -13,6 +13,10 @@ const userSchema = new Schema({
         type: String,
         required: true,
         minlength: [4, 'minimal 4 karakter']
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false
     },
     email: {
         type: String,
@@ -39,15 +43,13 @@ const userSchema = new Schema({
         }
     }
 
-}, { timestamps: true })
+}, { timestamps: false })
 
 //hook
-// userSchema.pre('save', function (next, done) {
-//     this.password = Helper.hashPassword(this.password)
-//     next()
-// })
+userSchema.pre('save', function (next, done) {
+    this.password = bcrypt.hashPassword(this.password)
+    next()
+})
 
-const User = mongoose.model('User', userSchema)
-
+const User = mongoose.model('user', userSchema)
 module.exports = User
-

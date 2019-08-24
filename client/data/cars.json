@@ -1,0 +1,102 @@
+[
+    {
+        "name": "toyota agia",
+        "price": {
+            "1.0 G M/T": "138200000",
+            "1.2 G M/T TRD": "145500000",
+            "1.2 G A/T TRD": "158600000"
+        },
+        "color": {
+            "red": "http://www.toyotaastra.info/wp-content/gallery/agya/agya-new-red.png",
+            "black": "http://www.toyotaastra.info/wp-content/gallery/agya/agya-new-black.png",
+            "white": "http://www.toyotaastra.info/wp-content/gallery/agya/agya-new-white.png",
+            "yellow": "http://www.toyotaastra.info/wp-content/gallery/agya/agya-new-yellow.png",
+            "silver-metallic": "http://www.toyotaastra.info/wp-content/gallery/agya/agya-new-silver-metallic.png"
+        },
+        "features": [
+            "4-speed automatic transmission",
+            "new advance audio system",
+            "new side body molding"
+        ]
+    },{
+        "name": "cayla",
+        "price": {
+            "1.0 E STD M/T": "136050000",
+            "1.2 E M/T": "138850000",
+            "1.2 G M/T": "144400000",
+            "1.2 G A/T":"156400000"
+        },
+        "color": {
+            "white": "http://www.toyotaastra.info/wp-content/gallery/calya/White.jpg",
+            "red": "http://www.toyotaastra.info/wp-content/gallery/calya/Red.jpg",
+            "black": "http://www.toyotaastra.info/wp-content/gallery/calya/Black.jpg",
+            "grey-metallic": "http://www.toyotaastra.info/wp-content/gallery/calya/Grey-Metallic.jpg",
+            "silver-metalic": "http://www.toyotaastra.info/wp-content/gallery/calya/Silver-Mica-Metallic.jpg"
+        },
+        "features": [
+            "rear combinator lamp",
+            "4-speed automatic transmission",
+            "power charging station"
+        ]
+    },{
+        "name": "avanza",
+        "price": {
+            "1.3 E STD M/T": "18860000",
+            "1.3 E STD A/T": "19980000",
+            "1.3 E M/T": "191100000",
+            "1.3 E A/T":"202300000"
+        },
+        "color": {
+            "gray-metallic": "http://www.toyotaastra.info/wp-content/gallery/avanza/grand-new-avanza-img4.png",
+            "red": "http://www.toyotaastra.info/wp-content/gallery/avanza/grand-new-avanza-img3.png",
+            "blue": "http://www.toyotaastra.info/wp-content/gallery/avanza/grand-new-avanza-img1.png",
+            "silver-metalic": "http://www.toyotaastra.info/wp-content/gallery/avanza/grand-new-avanza-img8.png",
+            "black": "http://www.toyotaastra.info/wp-content/gallery/avanza/grand-new-avanza-img6.png"
+        },
+        "features": [
+            "new advance audio system",
+            "new ember color combimeter design",
+            "new side body molding"
+        ]
+    },{
+        "name": "innova",
+        "price": {
+            "2.0 E M/T": "312050000",
+            "2.0 G A/T": "332250000",
+            "2.0 V M/T": "361050000",
+            "2.0 V A/T":"380850000"
+        },
+        "color": {
+            "white": "http://www.toyotaastra.info/wp-content/gallery/innova-venturer/super-white.png",
+            "red": "http://www.toyotaastra.info/wp-content/gallery/innova-venturer/red-mica-metallic.png",
+            "black": "http://www.toyotaastra.info/wp-content/gallery/innova-venturer/attitude-black.png",
+            "grey-metallic": "http://www.toyotaastra.info/wp-content/gallery/innova-venturer/dark-gray-mica-metallic.png",
+            "silver-metalic": "http://www.toyotaastra.info/wp-content/gallery/innova-venturer/silver-metallic.png"
+        },
+        "fearutes": [
+            "smart close back door",
+            "voice command",
+            "advance entertaiment system feature"
+        ]
+
+    },{
+        "name": "corrola altis",
+        "price": {
+            "1.8 G M/T": "441550000",
+            "1.8 V A/T": "476050000"
+        },
+        "color": {
+            "white": "http://www.toyotaastra.info/wp-content/gallery/altis/Superwhite.png",
+            "red": "http://www.toyotaastra.info/wp-content/gallery/altis/red-mica-metallic.png",
+            "black": "http://www.toyotaastra.info/wp-content/gallery/altis/attitude-black-mica.png",
+            "grey-metallic": "http://www.toyotaastra.info/wp-content/gallery/altis/silver-metallic.png",
+            "brown-metalic": "http://www.toyotaastra.info/wp-content/gallery/altis/phantom-brown-metallic1.png"
+        },
+        "fitures": [
+            "rear parking sensor",
+            "superior sport drive mode",
+            "side mirror garnish"
+        ]
+
+    }
+]

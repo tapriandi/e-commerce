@@ -5,7 +5,7 @@ const Jwt = require('../helpers/jwt')
 class UserController {
 
     static register(req, res, next) {
-
+        // console.log('kkk');
         let { name, email, password } = req.body
 
         User
@@ -15,38 +15,29 @@ class UserController {
             .then(newUser => {
                 res.status(201).json(newUser)
             })
-            .catch(err => {
-                console.log(err);
-            })
+            .catch(next)
     }
 
     static login(req, res, next) {
         // console.log(req.body);
-        let { email, password } = req.body
+        let { name, email } = req.body
 
         User
-            .findOne({ email })
-            .then(found => {
-                // console.log(found);
-                if (found) {
-                    let access_token = Jwt.createToken(found)
+            .findOne({email})
+            .then(user => {
+                let token = Jwt.createToken({user})
+                if (user) {
+                    // console.log(token);
                     res.status(200).json({
-                        token: access_token,
-                        id: found._id,
-                        name: found.name,
-                        email: found.email
+                        token,
+                        id: user._id,
+                        name: user.name,
                     });
-                    console.log(access_token);
                 } else {
                     next({ status: 400, messages: 'email/password wrong!' })
-
                 }
             })
-            .catch(err => {
-                console.log(err);
-            })
-                
-
+            .catch(next)
         }
 }
 
