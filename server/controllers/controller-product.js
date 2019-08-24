@@ -68,18 +68,13 @@ class ControllerProduct {
 
     static delete(req, res, next){
 
-        // console.log('masuk delete product');
-
         Product
             .findByIdAndDelete({
                 _id: req.params.id
             })
             .then(product => {
                 if (product) {
-
-                    console.log('berhasil delete' , product);
-
-                    res.status(200).json(product)
+                    res.status(200).json({product, msg: 'berhasil delete product'})
                 }
                 else {
                     res.status(400).json({ error: 'product not found'})

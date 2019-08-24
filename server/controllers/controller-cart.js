@@ -15,24 +15,18 @@ class ControllerCart {
   }
   static getOne(req, res, next) {
     Cart
-      .findById({ _id: req.params.id })
+      .findById({})
       .then(card => {
         res.status(200).json(card)
       })
       .catch(next)
   }
-  static create(req, res, next) {
-    // console.log(object);
-  }
+
   static addToCart(req, res, next) {
-    
-    console.log('masuk add chart');
     
     let found = {}
     let user = req.decoded.user._id
     
-    console.log(req.params.id);
-
     Product
       .findOne({ _id: req.params.id })
       .then(product => {
@@ -85,8 +79,27 @@ class ControllerCart {
       .catch(next)
   }
 
-  static deleteOne(req, res, next) { }
-  static deleteAll(req, res, next) { }
+  static deleteOne(req, res, next) {
+    Cart
+      .findOneAndRemove({
+        _id: req.params.id
+      })
+      .then(cart => {
+        res.status(200).json(cart)
+      })
+      .catch(next)
+  }
+
+  static deleteAll(req, res, next) {
+    Cart
+      .findByIdAndDelete({
+        _id: req.params.id
+      })
+      .then(cart => {
+        res.status(200).json(cart)
+      })
+      .catch(next)
+  }
 }
 
 module.exports = ControllerCart
