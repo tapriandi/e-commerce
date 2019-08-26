@@ -1,40 +1,35 @@
 <template>
   <div class="container">
-    <div id="card" class="row">
-      <Card></Card>
+    <div v-for=" r in products" :key="r.id">
+      <Card :product ="r" ></Card>
     </div>
+    <!-- <a>ini state {{ products }}</a> -->
   </div>
 </template>
 
 <script>
-import axios from "axios";
-import Card from "@/components/Card.vue";
+import Card from '@/components/Card.vue';
+import { mapState } from 'vuex'
 
 export default {
-  name: "card",
-  data: function () {
-    return {
-      cars: [],
-    };
-  },
+  // name: 'card',
   components: {
     Card,
   },
-  created: function () {
-    axios
-      .get('/cars')
-      .then(({ data }) => {
-        this.cars = data;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  methods: {
+
+  },
+  created() {
+    this.$store.dispatch('getProduct')
+  },
+  computed: {
+    ...mapState(['products']),
   },
 };
 </script>
 
 <style scoped>
-#card {
+.container {
   margin-top: 5rem;
   display: flex;
   flex-direction: row;

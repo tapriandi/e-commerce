@@ -3,29 +3,28 @@ const Product = require('../models/model-product');
 class ControllerProduct {
 
     static find(req, res, next){
-
+        // console.log('masuk < controller product');
         // const query = req.query ? req.query : ''
 
         Product
-            .find({
-                // 'name': new RegExp(query, 'i')
-            })
+            // .find({
+            //     'name': new RegExp(query, 'i')
+            // })
+            .find({})
             .then(products => {
-                // console.log('---> ',product);
+                // console.log('---> ',products);
                 res.status(200).json(products)
             })
             .catch(next)
     }
 
     static getOne(req, res, next){
-        
         Product
             .findById(req.params.id)
             .then(product => {
                 res.status(200).json(product)
             })
             .catch(next)
-            
     }
 
     static create(req, res, next){

@@ -3,10 +3,9 @@ const route = express.Router();
 const products = require('./route-product')
 const users = require('./route-user')
 const carts = require('./route-cart');
-const { authentication } = require('../helpers/auth')
 
 route.use('/user', users)
-route.use('/product', authentication, products)
+route.use('/product', products)
 route.use('/cart', carts)
 
 route.get('*', (req, res) => {

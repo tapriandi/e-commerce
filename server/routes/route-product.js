@@ -3,6 +3,7 @@ const route = express.Router();
 const controllerProduct = require('../controllers/controller-product');
 const upload = require('../helpers/uploadToGcp');
 const { authorize } = require('../helpers/auth');
+// const { authentication } = require('../helpers/auth');
 
 route.get('/', controllerProduct.find)
 route.get('/:id', controllerProduct.getOne)

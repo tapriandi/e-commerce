@@ -15,7 +15,7 @@ class ControllerCart {
   }
   static getOne(req, res, next) {
     Cart
-      .findById({})
+      .find({ userId: req.params.id })
       .then(card => {
         res.status(200).json(card)
       })
@@ -24,40 +24,22 @@ class ControllerCart {
 
   static addToCart(req, res, next) {
     
+    // console.log('<---- masuk controller cart');
+
     let found = {}
     let user = req.decoded.user._id
-    
+
+    // console.log(req.body.productId);
+
     Product
-      .findOne({ _id: req.params.id })
+      .findOne({ _id: req.body.productId })
       .then(product => {
         
         found = product
         return product
-
-        // Cart
-        //   .findOne({ userId: user })
-        //   .then(card => {
-
-        //     if (!card) {
-        //       Cart.create(found)
-        //         .then(product => {
-        //           console.log(product,'<--------------');
-        //         })
-        //         .catch(next)
-
-        //     } else {
-
-        //       Cart.update({_id: user }, {$push:{cart: found}})
-        //         .then(cart => {
-        //           console.log(cart ,'<==================');
-        //         })
-        //         .catch(next)
-        //     }
-        //   })
-        //   .catch(next)
       })
       .then(product =>{
-        return Cart.findOne({userId: user})
+        return Cart.findOne({ userId: user })
       })
       .then(cart =>{
         if(!cart){
@@ -71,35 +53,36 @@ class ControllerCart {
           cart.cart.push(found._id)
           return cart.save()
         }
-
       })
       .then(cart=>{
         res.status(200).json(cart)
       })
       .catch(next)
-  }
+  };
 
   static deleteOne(req, res, next) {
+    // Product
+    //   .findOne({})
     Cart
-      .findOneAndRemove({
-        _id: req.params.id
+      .findOneAndRemove({ // belum di cek di postman
+        cart: req.params.id 
       })
       .then(cart => {
         res.status(200).json(cart)
       })
       .catch(next)
-  }
+  };
 
-  static deleteAll(req, res, next) {
-    Cart
-      .findByIdAndDelete({
-        _id: req.params.id
-      })
-      .then(cart => {
-        res.status(200).json(cart)
-      })
-      .catch(next)
-  }
+  // static deleteAll(req, res, next) {
+  //   Cart
+  //     .findByIdAndDelete({
+  //       _id: req.params.id
+  //     })
+  //     .then(cart => {
+  //       res.status(200).json(cart)
+  //     })
+  //     .catch(next)
+  // }
 }
 
 module.exports = ControllerCart

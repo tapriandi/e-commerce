@@ -1,7 +1,8 @@
 <template>
 <div class="container">
     <div class="detail">
-        <h1>Lorem</h1>
+        <h1>Lorem</h1>LYUFWOY Y I
+        {{productDetail}}
         <hr>
         <span>Lorem ipsum dolor sit</span>
         <div class="img">
@@ -13,12 +14,18 @@
 </template>
 
 <script>
+import {mapState} from 'vuex';
 export default {
-
+  computed: {
+    ...mapState(['productDetail']),
+  },
+  created() {
+    this.$store.dispatch('productDetail');
+  },
 };
 </script>
 
-<style>
+<style scoped>
 .detail {
     margin-top: 8rem;
 };

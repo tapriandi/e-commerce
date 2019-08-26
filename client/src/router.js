@@ -16,18 +16,28 @@ export default new Router({
     {
       path: '/cars',
       name: 'cars',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import(/* webpackChunkName: "about" */ './views/Cars.vue'),
+      children: [
+        {
+          path: ':id',
+          component: () => import(/* webpackChunkName: "detail" */ './components/productDetail.vue'),
+        },
+      ],
     },
     {
-      path: '/detail',
-      name: 'detail',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "detail" */ './views/Detail.vue'),
+      path: '/login',
+      name: 'login',
+      component: () => import(/* webpackChunkName: "login" */ './components/Login.vue'),
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: () => import(/* webpackChunkName: "register" */ './components/Register.vue'),
+    },
+    {
+      path: '/cart',
+      name: 'cart',
+      component: () => import(/* webpackChunkName: "register" */ './components/cartDetail.vue'),
     },
   ],
 });

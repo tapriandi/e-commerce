@@ -5,7 +5,7 @@ const Jwt = require('../helpers/jwt')
 class UserController {
 
     static register(req, res, next) {
-        // console.log('kkk');
+        // console.log(req.body);
         let { name, email, password } = req.body
 
         User
@@ -20,12 +20,13 @@ class UserController {
 
     static login(req, res, next) {
         // console.log(req.body);
-        let { name, email } = req.body
+        let { email, password } = req.body
 
         User
-            .findOne({email})
+            .findOne({ email })
             .then(user => {
-                let token = Jwt.createToken({user})
+                // console.log(user,'<---- dari controller');
+                let token = Jwt.createToken({ user })
                 if (user) {
                     // console.log(token);
                     res.status(200).json({
@@ -34,7 +35,7 @@ class UserController {
                         name: user.name,
                     });
                 } else {
-                    next({ status: 400, messages: 'email/password wrong!' })
+                    next({ status: 400, messages: 'email / password wrong!' })
                 }
             })
             .catch(next)

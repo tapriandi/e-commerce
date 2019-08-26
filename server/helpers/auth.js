@@ -1,29 +1,12 @@
 const Jwt = require('./jwt');
-// const Bcrypt = require('./bcrypt')
 const Product = require('../models/model-product');
-const User = require('../models/model-user');
 
 function authentication(req, res, next) {
 
     try {
-
         let decoded = Jwt.verifyJwt(req.headers.token)
         req.decoded = decoded
-        next()
-        // User
-        //     .findOne({
-        //         email: decoded.email
-        //     })
-        //     .then(user => {
-        //         req.decoded = decoded,
-        //             req.headers.is = decoded.id
-        //         next()
-        //     })
-        //     .catch(err => {
-        //         res.status(401).json({
-        //             error: 'Autentication failed'
-        //         })
-        //     })
+        next();
     }
     catch (err) {
         next(err)
