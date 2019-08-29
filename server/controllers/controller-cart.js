@@ -24,12 +24,8 @@ class ControllerCart {
 
   static addToCart(req, res, next) {
     
-    // console.log('<---- masuk controller cart');
-
     let found = {}
     let user = req.decoded.user._id
-
-    // console.log(req.body.productId);
 
     Product
       .findOne({ _id: req.body.productId })

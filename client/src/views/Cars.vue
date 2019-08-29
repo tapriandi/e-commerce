@@ -3,16 +3,20 @@
     <div v-for=" r in products" :key="r.id">
       <Card :product ="r" ></Card>
     </div>
+    <!-- {{getProduct}} -->
     <!-- <a>ini state {{ products }}</a> -->
   </div>
 </template>
 
 <script>
 import Card from '@/components/Card.vue';
-import { mapState } from 'vuex'
+import { mapState } from 'vuex';
 
 export default {
   // name: 'card',
+  computed: {
+    ...mapState(['products']),
+  },
   components: {
     Card,
   },
@@ -21,10 +25,7 @@ export default {
   },
   created() {
     this.$store.dispatch('getProduct')
-  },
-  computed: {
-    ...mapState(['products']),
-  },
+  }
 };
 </script>
 
@@ -34,5 +35,5 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: center;
-}
+};
 </style>

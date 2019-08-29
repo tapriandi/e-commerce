@@ -18,8 +18,18 @@
 <script>
 import {mapState} from 'vuex';
 export default {
+  name: 'cartDetail',
+  data() {
+    return {
+      userId: {id: localStorage.id}
+    };
+  },
   computed: {
     ...mapState(['carts']),
+  },
+  created() {
+    this.$store.dispatch('getProduct')
+    this.$store.dispatch('getCartOwner', this.userId);
   },
 };
 </script>
@@ -27,5 +37,5 @@ export default {
 <style>
 .container {
   margin-top: 6rem;
-}
+};
 </style>

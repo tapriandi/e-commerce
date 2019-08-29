@@ -4,8 +4,9 @@
   <img :src="product.image" class="card-img-top" alt="..." style="max-height:20rem;">
   <div class="card-body">
     <h5 class="card-title">{{ product.name }}</h5>
-    <h5 class="card-title">{{ product.price }}</h5>
-    <router-link :to="`/cars/${product._id}`" class="btn btn-primary">see detail</router-link>
+    <h5 class="card-title">Rp.{{ product.price }} Juta</h5>
+    <!-- <router-link :to="`/productDetail/${product._id}`" class="btn btn-primary">see detail</router-link> -->
+    <button @click="toDetail(product._id)" class="btn btn-primary">see detail</button>
     <button @click="addToCart(product._id)" class="btn btn-primary ml-2">add to cart</button>
   </div>
 </div>
@@ -27,6 +28,10 @@ export default {
     addToCart(productId) {
       this.$store.dispatch('addToCart', productId);
     },
+    toDetail(productId) {
+      this.$store.dispatch('productDetail', productId);
+      this.$router.push(`/productDetail/${productId}`);
+    },
   },
   computed: {
     // getRupiah() {
@@ -34,7 +39,7 @@ export default {
     // }
   },
   created() {
-    this.$store.dispatch('productDetail');
+    // this.$store.dispatch('productDetail');
   },
 };
 </script>
@@ -43,7 +48,7 @@ export default {
 .card {
   margin: 1rem;
   width: 25rem;
-  height: 30rem;
+  height: 18rem;
   box-shadow: 0 0 20px grey;
 };
 .card:hover {

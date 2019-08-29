@@ -37,9 +37,9 @@ export default {
     };
   },
   methods: {
-    // toLogin() {
-    //   this.$route.push('/register');
-    // },
+    register() {
+      this.$store.dispatch('register', this.form)
+    }
   },
 };
 </script>

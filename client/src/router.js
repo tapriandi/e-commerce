@@ -17,10 +17,21 @@ export default new Router({
       path: '/cars',
       name: 'cars',
       component: () => import(/* webpackChunkName: "about" */ './views/Cars.vue'),
+    },
+    {
+      path: '/productDetail/:id',
+      name: 'productDetail',
+      component: () => import(/* webpackChunkName: "productDetail" */ './components/productDetail.vue'),
       children: [
         {
-          path: ':id',
-          component: () => import(/* webpackChunkName: "detail" */ './components/productDetail.vue'),
+          path: '/kelebihan',
+          name: 'kelebihan',
+          component: () => import(/* webpackChunkName: "kelebihan" */ './components/kelebihan.vue'),
+        },
+        {
+          path: '/kekurangan',
+          name: 'kekurangan',
+          component: () => import(/* webpackChunkName: "kekurangan" */ './components/kekurangan.vue'),
         },
       ],
     },
@@ -35,9 +46,9 @@ export default new Router({
       component: () => import(/* webpackChunkName: "register" */ './components/Register.vue'),
     },
     {
-      path: '/cart',
-      name: 'cart',
-      component: () => import(/* webpackChunkName: "register" */ './components/cartDetail.vue'),
+      path: '/cartDetail',
+      name: 'cartDetail',
+      component: () => import(/* webpackChunkName: "cartDetail" */ './components/cartDetail.vue'),
     },
   ],
 });

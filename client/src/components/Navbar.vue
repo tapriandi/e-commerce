@@ -1,10 +1,11 @@
 <template>
 <nav class="navbar bg-primary justify-content-center">
   <!-- <router-link class="nav" to="/">Home</router-link> -->
-  <router-link class="nav" to="/cars">Cars</router-link>
-  <router-link class="nav" to="/login">Login</router-link>
-  <router-link class="nav" to="/cars">Logout</router-link>
-  <router-link class="btn" to="/cart">{{ carts[0].cart.length }}</router-link>
+  <router-link class="nav" to="/cars">Store</router-link>
+  <router-link v-if="!isLogin" class="nav" to="/login">Login</router-link>
+  <a v-if="isLogin" class="nav" @click.prevent="logout">Logout</a>
+  <router-link v-if="isLogin" class="nav" to="/cartDetail">my cart {{carts.length}} item</router-link>
+  <!-- <a class="nav" @click.prevent="toCartDetail">{{ carts }} cart</a> -->
 </nav>
 </template>
 
@@ -17,19 +18,21 @@ export default {
     return {
     };
   },
-  methods: {
-    logout() {
-      // console.log('a;fgjansdb');
-      this.$store.commit('LOGOUT', false);
-    },
-  },
   computed: {
     ...mapState(['isLogin', 'carts']),
   },
-  mounted() {
+  methods: {
+    logout() {
+      this.$store.commit('LOGOUT', false);
+    },
+    toChartDetail() {
+      // this.$store.dispatch('getCart');
+    }
+  },
+  created() {
     if(localStorage.token){
       this.$store.commit('ISLOGIN', true);
-      this.$store.dispatch('getCart')
+      // this.$store.dispatch('getCart')
     };
   },
 };
@@ -40,7 +43,8 @@ export default {
   margin: .5rem;
   padding-right: 2rem;
   padding-left: 2rem;
-  color: white;
+  color: white !important;
+  cursor: pointer;
   text-decoration: none!important;
   transition: 0.8s;
 };

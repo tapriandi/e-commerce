@@ -12,6 +12,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     isLogin: false,
+    isAdmin: false,
     userLoggedIn: {
       userId: '',
       name: '',
@@ -36,9 +37,9 @@ export default new Vuex.Store({
         'You clicked the button!',
         'success',
       );
-      router.push('/Cars');
+      router.push('/cars');
     },
-    GET_CART(state, payload) {
+    GET_CART_OWNER(state, payload) {
       state.carts = payload;
     },
     SET_CART(state, payload) {
@@ -48,9 +49,14 @@ export default new Vuex.Store({
       state.productDetail = payload;
     },
     LOGOUT(state, payload) {
-      state.isLogin = payload ;
+      router.push('/cars');
+      state.isLogin = payload;
       localStorage.clear();
-      // state.push('/Home');
+      Swal.fire(
+        'logout Succes',
+        'You clicked the button!',
+        'success',
+      );
     },
     ISLOGIN(state, payload) {
       state.isLogin = payload;
@@ -75,25 +81,22 @@ export default new Vuex.Store({
         });
     },
     login(context, formLogin) {
-      // console.log('masuk sini');
       Axios.post(`${baseUrl}/api/user/login`, formLogin)
         .then(({ data }) => {
-          // console.log(data);
+          console.log(data);
           context.commit('LOGIN', data);
         })
         .catch((err) => {
-          // eslint-disable-next-line no-console
-          console.log(err);
+          console.log(err.response.data);
         });
     },
     getProduct(context) {
-      Axios.get(`${baseUrl}/api/product/`)
+      Axios.get(`${baseUrl}/api/product`)
         .then(({ data }) => {
           context.commit('SET_PRODUCT', data);
         })
         .catch((err) => {
-          // eslint-disable-next-line no-console
-          console.log(err);
+          console.log(err.response.data);
         });
     },
     addToCart(context, productId) {
@@ -102,30 +105,31 @@ export default new Vuex.Store({
           token: localStorage.token,
         },
       };
-      // console.log(productId);
       Axios.post(`${baseUrl}/api/cart`, { productId }, config)
         .then(({ data }) => {
           context.commit('SET_CART', data);
-          // console.log('masuk cart', data);
         })
         .catch((err) => {
           console.log(err);
         });
     },
-    getCart(context) {
+    getCartOwner(context, owner) {
+      console.log(owner);
       Axios
-        .get(`${baseUrl}/api/cart/${localStorage.id}`)
+        .get(`${baseUrl}/api/cart/${owner.id}`)
         .then(({ data }) => {
-          context.commit('GET_CART', data);
+          context.commit('GET_CART_OWNER', data);
         })
         .catch((err) => {
-          console.log(err);
+          console.log(err, 'total');
         });
     },
     productDetail(context, productId) {
+      // console.log(productId, '<<<<<<<<<<<<<<');
       Axios
         .get(`${baseUrl}/api/product/${productId}`)
         .then(({ data }) => {
+          // console.log(data);
           context.commit('PRODUCT_DETAIL', data);
         })
         .catch((err) => {

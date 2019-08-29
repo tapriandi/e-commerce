@@ -1,13 +1,19 @@
 <template>
 <div class="container">
     <div class="detail">
-        <h1>Lorem</h1>LYUFWOY Y I
-        {{productDetail}}
+        <h1>{{productDetail.name}}</h1>
+        <!-- {{productDetail}} -->
         <hr>
-        <span>Lorem ipsum dolor sit</span>
-        <div class="img">
-            <img src="../assets/happy-fox.png" class="img-fluid" alt="Responsive image">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium quaerat neque perspiciatis quas! Voluptatibus dolorem recusandae saepe earum in eveniet, nisi tenetur, sapiente similique amet explicabo accusamus laboriosam, ipsum doloribus?. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque consectetur inventore sequi earum magnam odio rerum nobis voluptatum quaerat similique commodi pariatur, illo, ipsa libero accusamus dicta minus velit nisi. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Adipisci amet totam hic, quas quo ea ut doloribus rem ratione aut reprehenderit officia id in beatae eligendi sapiente nihil! Ipsum, ipsam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, maxime vero mollitia quas nesciunt, dolorum aspernatur nulla eaque cupiditate, ipsa numquam architecto tempore sed dolor asperiores? Minima praesentium obcaecati quaerat? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure deserunt placeat voluptas eos, quisquam quae provident obcaecati quia nulla, libero nesciunt. Repellat laboriosam eius iure ipsam debitis non, quos consequuntur. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam perspiciatis laboriosam, non rerum eaque dolore ex obcaecati id similique aut veniam eum, accusantium quas impedit recusandae laborum sequi. Dicta, similique? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse fugit quo aut distinctio earum optio debitis assumenda laboriosam tenetur eos! Optio corporis eos repellendus quidem debitis officia quisquam omnis sapiente.</p>
+        <span class="mr-5">Price: {{productDetail.price}} Juta</span>
+        <span>Stock: {{productDetail.stock}} unit</span>
+        <div class="img mt-4">
+            <img :src="productDetail.image" class="img-fluid mb-5" alt="Responsive image">
+            <h4>Description Product</h4>
+            <p>{{productDetail.description}}</p>
+        </div>
+        <div class="children p-2 ">
+          <a class="p-2">Kekurangan</a>
+          <a class="p-2">Kelebihan</a>
         </div>
     </div>
 </div>
@@ -16,11 +22,13 @@
 <script>
 import {mapState} from 'vuex';
 export default {
+  name: 'productDetail',
   computed: {
     ...mapState(['productDetail']),
   },
   created() {
-    this.$store.dispatch('productDetail');
+    this.$store.dispatch('getProduct')
+    this.$store.dispatch('productDetail', this.$route.params.id);
   },
 };
 </script>
@@ -33,5 +41,7 @@ export default {
     height: 45rem;
     width: 30rem;
 };
-
+a {
+  cursor: pointer;
+}
 </style>

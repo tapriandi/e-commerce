@@ -19,16 +19,16 @@ class UserController {
     }
 
     static login(req, res, next) {
-        // console.log(req.body);
+        console.log(req.body,'jjjjjj');
         let { email, password } = req.body
 
         User
             .findOne({ email })
             .then(user => {
-                // console.log(user,'<---- dari controller');
+                console.log(user,'<---- dari controller');
                 let token = Jwt.createToken({ user })
                 if (user) {
-                    // console.log(token);
+                    console.log(token);
                     res.status(200).json({
                         token,
                         id: user._id,
