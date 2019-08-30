@@ -5,7 +5,7 @@ const Jwt = require('../helpers/jwt')
 class UserController {
 
     static register(req, res, next) {
-        // console.log(req.body);
+        console.log(req.body);
         let { name, email, password } = req.body
 
         User
@@ -13,13 +13,13 @@ class UserController {
                 name, email, password
             })
             .then(newUser => {
+                console.log(newUser, '<--------');
                 res.status(201).json(newUser)
             })
             .catch(next)
     }
 
     static login(req, res, next) {
-        console.log(req.body,'jjjjjj');
         let { email, password } = req.body
 
         User

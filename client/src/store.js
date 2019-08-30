@@ -64,6 +64,7 @@ export default new Vuex.Store({
   },
   actions: {
     register(context, form) {
+      console.log('masuk sini');
       Axios.post(`${baseUrl}/api/user/register`, form)
         .then(({ data }) => {
           // eslint-disable-next-line no-console

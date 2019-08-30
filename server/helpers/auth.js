@@ -15,12 +15,13 @@ function authentication(req, res, next) {
 }
 
 function authorize(err, req, res, next) {
-
+    console.log('masuk auth');
     Product
         .findOne({
             _id: req.params.id,
         })
         .then(product => {
+            console.log('masuk next <-------------');
             if (product) {
                 console.log(req.decoded.id, 'dari helper auth');
                 if (product.userId == req.decoded._id) {

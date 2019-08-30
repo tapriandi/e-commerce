@@ -19,6 +19,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use('/api', routes)
 
 app.use((err, req, res, next) => {
+    console.log(err);
     if(!err.status) {
         res.status(500).json(err)
     }

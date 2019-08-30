@@ -3,8 +3,6 @@ const Product = require('../models/model-product');
 class ControllerProduct {
 
     static find(req, res, next){
-        // console.log('masuk < controller product');
-        // const query = req.query ? req.query : ''
 
         Product
             // .find({
